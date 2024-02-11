@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   demoThumbnailUrl,
   demoChannelUrl,
@@ -10,8 +10,16 @@ import {
 import { Box, Button, CardContent, CardMedia, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CheckCircle } from "@mui/icons-material";
-const ChannelCard = ({ channelDetail }) => {
-  console.log(channelDetail);
+const ChannelCard = ({ channelDetail, md }) => {
+  const[subscribe,setSubscribe]=useState(false);
+  let Subscriber=((channelDetail?.statistics?.subscriberCount)/1000);
+  let videocnt=channelDetail?.statistics?.videoCount;
+  // console.log(channelDetail.statistics.subscriberCount);
+  // console.log(channelDetail.statistics.videoCount);
+  const handelSubscribe=()=>
+{
+  subscribe==true?setSubscribe(false):setSubscribe(true)
+}
   return (
     <Box
       sx={{
@@ -19,9 +27,9 @@ const ChannelCard = ({ channelDetail }) => {
         display: "flex",
         justifyContent: "start",
         alignItems: "center",
-        width: {xs:'356px',md:'1320px',},
-        borderBottom: '1px solid #e0e0e0',
-        mb:'10px'
+        width: { xs: "356px", md: md },
+        borderBottom: "1px solid #e0e0e0",
+        mb: "10px",
       }}
     >
       <Link to={`/channel/${channelDetail?.id?.channelId}`}>
@@ -48,7 +56,7 @@ const ChannelCard = ({ channelDetail }) => {
               border: "1px solid #e3e3e3",
             }}
           />
-          <div className="ml-6 flex  flex-col">
+          <div className="ml-6 flex  flex-col items-start">
             <Typography variant="h3">
               {channelDetail?.snippet?.title}
               <CheckCircle sx={{ fontSize: 24, color: "gray" }} />
@@ -56,6 +64,9 @@ const ChannelCard = ({ channelDetail }) => {
             <Typography variant="h6" sx={{ color: "gray" }}>
               {channelDetail?.snippet?.description.slice(0, 40)}
             </Typography>
+            <Typography variant="h9" sx={{ color: "gray" }}>
+            .{Subscriber}K subscribers . {videocnt} videos
+          </Typography>
             <Button
               sx={{
                 backgroundColor: "white",
@@ -63,8 +74,9 @@ const ChannelCard = ({ channelDetail }) => {
                 borderRadius: "20px",
                 mt: "10px",
               }}
+              onClick={handelSubscribe}
             >
-              Subscribe
+              {subscribe?'Subscribed':'Subscrib'}
             </Button>
           </div>
         </CardContent>
