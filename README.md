@@ -85,4 +85,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 css
 Copy code
 
-You can copy and paste this content into a file named README.md in your project directory. This README.md provides an overview of your project, including instructions on how to get started, a table of contents, features, folder structure, dependencies, contribution guidelines, and license information. You can further customize it to include additional sections or details specific to your app.
