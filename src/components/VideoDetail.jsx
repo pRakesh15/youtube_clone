@@ -17,7 +17,7 @@ const VideoDetail = () => {
     );
   }, [id]);
   // console.log(videoDetails);
-  console.log(videos)
+  // console.log(videos)
   if (!videoDetails?.snippet) return "Loading...";
   if (!videos?.length) return "Loading...";
   const {
@@ -70,7 +70,7 @@ const VideoDetail = () => {
             </Stack>
             </div>
         </Box>
-        <div className="bg-red-800 w-[450px]">
+        <div className="bg-black w-[450px]">
         <Stack direction="column" flexWrap="wrap" justifyContent="start" gap={2}>
       {videos.map((item, idx) => (
         <Box key={idx}>
